@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejemplos de Tags HTML5 Más Usados</title>
-    <style>
+<!--     <style>
         body {
             font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif, sans-serif;
             line-height: 1;
@@ -88,7 +88,34 @@
         button:hover {
             background: #005c99;
         }
-    </style> 
+    </style>  -->
+
+    <style>
+        /* Declaración de un nuevo estilo personalizado */
+        /* Se usa un punto . y luego el nombre del estilo*/
+        .bg-duoc{
+            background-color: #ffb800;
+        }
+        .standar-width{
+            width: 250px;
+        }
+        section{
+            width: 300px;
+            border-left: #ffb800 solid 3px;
+            padding-left: 10px;
+        }
+        #multimedia{
+            background-color: aliceblue;
+            width: 350px;
+        }
+
+        #multimedia h3{
+            background-color: #000;
+            color: aliceblue;
+            text-align: center;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -115,12 +142,12 @@
                 <h3>Encabezados (h1 a h6)</h3>
                 <h1>Encabezado H1</h1>
                 <h2>Encabezado H2</h2>
-                <h3>Encabezado H3</h3>
+                <h3 style="background-color: rgb(194, 22, 22); width: 200px;">Encabezado H3</h3>
                 <h4>Encabezado H4</h4>
                 <h5>Encabezado H5</h5>
                 <h6>Encabezado H6</h6>
 
-                <h3>Párrafos y formato de texto</h3>
+                <h3 class="bg-duoc standar-width">Párrafos y formato de texto</h3>
                 <p>Este es un <strong>párrafo normal</strong> con <em>texto enfatizado</em> y <mark
                         class="highlight">texto resaltado</mark>.</p>
                 <p>También podemos usar <small>texto pequeño</small>, <sup>superíndices</sup>, <sub>subíndices</sub> y
@@ -159,7 +186,8 @@
                 </p>
                 <p>Código en línea: <code>console.log('Hola mundo');</code></p>
 
-                <pre><code>
+    <pre>
+    <code>
 function saludar(nombre) {
     return `Hola, ${nombre}!`;
 }
@@ -173,8 +201,7 @@ console.log(saludar('Mundo'));
                 <h2>Elementos Multimedia</h2>
 
                 <h3>Imágenes</h3>
-                <img src="https://picsum.photos/300/200"
-                    alt="Imagen de ejemplo" title="Esta es una imagen de placeholder">
+                <img src="https://picsum.photos/300/200" alt="Imagen de ejemplo" title="Esta es una imagen de placeholder">
 
                 <figure>
                     <img src="https://picsum.photos/400/250"
