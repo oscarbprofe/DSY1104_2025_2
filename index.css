@@ -1,0 +1,18 @@
+
+html{
+    font-size: medium;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 11em;
+    background-color: #f4f4f4;
+}
+
+.circle{
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+}
