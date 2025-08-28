@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗡️ La Leyenda del Código Perdido - Aventura JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Pantalla de Inicio -->
+        <div id="pantalla-inicio" class="pantalla activa">
+            <div class="intro-content">
+                <h1 class="titulo-principal">🗡️ La Leyenda del Código Perdido</h1>
+                <div class="subtitle">Una aventura épica de programación</div>
+                
+                <div class="historia-intro">
+                    <p>En el reino místico de <strong>Algorithmia</strong>, una antigua civilización de programadores guardaba el secreto del <em>Código Perdido</em>, capaz de resolver cualquier problema computacional del universo.</p>
+                    
+                    <p>Pero un día, el malvado virus <strong>Bug the Destroyer</strong> fragmentó el código en cuatro partes, esparciéndolas por los confines del reino digital.</p>
+                    
+                    <p>Ahora, tú, valiente estudiante de informática, has sido elegido para recuperar los fragmentos y restaurar el equilibrio en el mundo del código.</p>
+                </div>
+                
+                <div class="personaje-creation">
+                    <h3>🧙‍♂️ Crea tu Héroe Digital</h3>
+                    <div class="input-group">
+                        <label for="nombre-heroe">Nombre de tu héroe:</label>
+                        <input type="text" id="nombre-heroe" placeholder="Escribe tu nombre épico..." maxlength="20">
+                    </div>
+                    
+                    <div class="clases-heroe">
+                        <label>Elige tu clase:</label>
+                        <div class="clase-options">
+                            <button class="clase-btn" data-clase="mago">
+                                🧙‍♂️ Mago del Front-End
+                                <small>Domina HTML, CSS y las artes visuales</small>
+                            </button>
+                            <button class="clase-btn" data-clase="guerrero">
+                                ⚔️ Guerrero del Back-End
+                                <small>Maestro de la lógica y las bases de datos</small>
+                            </button>
+                            <button class="clase-btn" data-clase="arquero">
+                                🏹 Arquero Full-Stack
+                                <small>Equilibrio perfecto entre todas las tecnologías</small>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button id="btn-iniciar-aventura" class="btn-principal">
+                        🚀 ¡Comenzar la Aventura!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de Estado del Héroe -->
+        <div id="panel-heroe" class="panel-heroe oculto">
+            <div class="heroe-info">
+                <div class="heroe-avatar">
+                    <span id="heroe-emoji">🧙‍♂️</span>
+                </div>
+                <div class="heroe-datos">
+                    <h3 id="heroe-nombre">Héroe</h3>
+                    <p id="heroe-clase">Clase</p>
+                    <div class="progreso">
+                        <div class="barra-progreso">
+                            <div id="barra-vida" class="vida" style="width: 100%"></div>
+                        </div>
+                        <span id="vida-texto">100/100 HP</span>
+                    </div>
+                </div>
+                <div class="fragmentos-contador">
+                    <h4>Fragmentos del Código:</h4>
+                    <div class="fragmentos-grid">
+                        <div class="fragmento" id="fragmento-1">🧩</div>
+                        <div class="fragmento" id="fragmento-2">🧩</div>
+                        <div class="fragmento" id="fragmento-3">🧩</div>
+                        <div class="fragmento" id="fragmento-4">🧩</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desafío 1: Acertijo Poético -->
+        <div id="desafio-1" class="pantalla">
+            <div class="desafio-header">
+                <h2>🌸 El Jardín de los Algoritmos Florecientes</h2>
+                <div class="ubicacion">Templo de la Sabiduría Ancestral</div>
+            </div>
+            
+            <div class="escena">
+                <div class="imagen-escena">🏛️🌸🦋</div>
+                <div class="dialogo">
+                    <p><strong>Anciana Programadora:</strong> "Bienvenido, joven <span class="nombre-heroe-placeholder"></span>. Para obtener el primer fragmento, debes resolver este acertijo ancestral..."</p>
+                </div>
+            </div>
+            
+            <div class="acertijo-poetico">
+                <div class="poema">
+                    <p><em>"En bucles danzo sin cesar,<br>
+                    Mi condición debo evaluar.<br>
+                    Si es verdadera, sigo mi rumbo,<br>
+                    Si es falsa, me detengo en el mundo.<br>
+                    ¿Qué estructura de control soy yo,<br>
+                    que repite mientras la condición se dio?"</em></p>
+                </div>
+                
+                <div class="opciones-acertijo">
+                    <button class="opcion-btn" data-respuesta="while">🔄 while</button>
+                    <button class="opcion-btn" data-respuesta="for">🔁 for</button>
+                    <button class="opcion-btn" data-respuesta="if">❓ if</button>
+                    <button class="opcion-btn" data-respuesta="switch">🔀 switch</button>
+                </div>
+            </div>
+            
+            <div class="feedback-area" id="feedback-1"></div>
+        </div>
+
+        <!-- Desafío 2: Ejercicio de Lógica -->
+        <div id="desafio-2" class="pantalla">
+            <div class="desafio-header">
+                <h2>🧠 El Laberinto de la Lógica Pura</h2>
+                <div class="ubicacion">Cavernas del Pensamiento Crítico</div>
+            </div>
+            
+            <div class="escena">
+                <div class="imagen-escena">🕳️💎🔮</div>
+                <div class="dialogo">
+                    <p><strong>Guardián de Cristal:</strong> "El segundo fragmento está protegido por una prueba de lógica. Debes encontrar el patrón oculto..."</p>
+                </div>
+            </div>
+            
+            <div class="logica-challenge">
+                <h3>🔍 Encuentra el Número Perdido</h3>
+                <p>Observa la secuencia y descubre qué número falta:</p>
+                
+                <div class="secuencia">
+                    <div class="numero-box">2</div>
+                    <div class="numero-box">4</div>
+                    <div class="numero-box">8</div>
+                    <div class="numero-box missing">?</div>
+                    <div class="numero-box">32</div>
+                    <div class="numero-box">64</div>
+                </div>
+                
+                <div class="input-area">
+                    <input type="number" id="numero-respuesta" placeholder="¿Qué número falta?">
+                    <button id="verificar-numero" class="btn-verificar">🔍 Verificar</button>
+                </div>
+                
+                <div class="pista">
+                    <p><strong>💡 Pista:</strong> Cada número está relacionado con el anterior de una manera muy específica...</p>
+                </div>
+            </div>
+            
+            <div class="feedback-area" id="feedback-2"></div>
+        </div>
+
+        <!-- Desafío 3: Secuencia de Botones -->
+        <div id="desafio-3" class="pantalla">
+            <div class="desafio-header">
+                <h2>⚡ El Ritual de Invocación Mágica</h2>
+                <div class="ubicacion">Torre de los Hechizos Digitales</div>
+            </div>
+            
+            <div class="escena">
+                <div class="imagen-escena">🗼✨⚡</div>
+                <div class="dialogo">
+                    <p><strong>Hechicero Supremo:</strong> "Para despertar el tercer fragmento, debes ejecutar la secuencia mágica correcta. Observa y repite..."</p>
+                </div>
+            </div>
+            
+            <div class="ritual-magico">
+                <div class="instrucciones">
+                    <p>🎯 <strong>Instrucciones:</strong> Observa la secuencia de colores que se ilumina, luego repítela presionando los botones en el mismo orden.</p>
+                </div>
+                
+                <div class="botones-magicos">
+                    <button class="boton-magico rojo" data-color="rojo" data-sound="do">🔴</button>
+                    <button class="boton-magico azul" data-color="azul" data-sound="re">🔵</button>
+                    <button class="boton-magico verde" data-color="verde" data-sound="mi">🟢</button>
+                    <button class="boton-magico amarillo" data-color="amarillo" data-sound="fa">🟡</button>
+                </div>
+                
+                <div class="controles-ritual">
+                    <button id="iniciar-secuencia" class="btn-ritual">🌟 Iniciar Ritual</button>
+                    <button id="reset-secuencia" class="btn-ritual" disabled>🔄 Reintentar</button>
+                </div>
+                
+                <div class="progreso-ritual">
+                    <p>Secuencia: <span id="secuencia-mostrar"></span></p>
+                    <p>Nivel: <span id="nivel-actual">1</span>/3</p>
+                </div>
+            </div>
+            
+            <div class="feedback-area" id="feedback-3"></div>
+        </div>
+
+        <!-- Desafío 4: Pregunta Final -->
+        <div id="desafio-4" class="pantalla">
+            <div class="desafio-header">
+                <h2>👑 El Santuario del Código Perdido</h2>
+                <div class="ubicacion">Cámara del Conocimiento Supremo</div>
+            </div>
+            
+            <div class="escena">
+                <div class="imagen-escena">👑💻🌟</div>
+                <div class="dialogo">
+                    <p><strong>El Código Perdido:</strong> "Valiente <span class="nombre-heroe-placeholder"></span>, has llegado hasta aquí. Para obtener el último fragmento y completar tu misión, debes responder la pregunta definitiva..."</p>
+                </div>
+            </div>
+            
+            <div class="pregunta-final">
+                <div class="pergamino">
+                    <h3>📜 La Pregunta del Código Eterno</h3>
+                    <p><strong>"¿Cuál es el lenguaje de programación que, según la leyenda, Tim Berners-Lee utilizó para crear la primera página web de la historia, dando origen a la World Wide Web?"</strong></p>
+                    
+                    <div class="respuesta-area">
+                        <textarea id="respuesta-final" placeholder="Escribe tu respuesta aquí... (Pista: Es un lenguaje de marcado, no de programación)" maxlength="200"></textarea>
+                        <button id="verificar-respuesta-final" class="btn-verificar">⚔️ Sellar el Destino</button>
+                    </div>
+                    
+                    <div class="ayuda-final">
+                        <p><strong>💡 Pista adicional:</strong> Sus siglas empiezan con 'H' y termina con 'L', y no es un lenguaje de programación tradicional, sino de marcado...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback-area" id="feedback-4"></div>
+        </div>
+
+        <!-- Pantalla de Victoria -->
+        <div id="pantalla-victoria" class="pantalla">
+            <div class="victoria-content">
+                <h1 class="titulo-victoria">🏆 ¡VICTORIA ÉPICA! 🏆</h1>
+                
+                <div class="celebracion">
+                    <div class="codigo-restaurado">
+                        <h2>💻 El Código Perdido ha sido Restaurado</h2>
+                        <div class="codigo-final">
+                            <pre><code>function salvarMundo() {
+    let heroismo = true;
+    let fragmentos = 4;
+    
+    if (heroismo && fragmentos === 4) {
+        return "¡El equilibrio ha sido restaurado!";
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="heroe-final">
+                        <h3>🌟 <span id="nombre-heroe-final"></span> - Leyenda Viviente</h3>
+                        <p>Has demostrado ser un verdadero maestro del código. Tu valentía, lógica y conocimiento han salvado el reino de Algorithmia.</p>
+                        
+                        <div class="logros">
+                            <h4>🏅 Logros Desbloqueados:</h4>
+                            <div class="logro">✅ Poeta del Código - Resolviste el acertijo ancestral</div>
+                            <div class="logro">✅ Maestro de la Lógica - Encontraste el patrón oculto</div>
+                            <div class="logro">✅ Invocador Digital - Completaste el ritual mágico</div>
+                            <div class="logro">✅ Guardián del Conocimiento - Respondiste la pregunta definitiva</div>
+                            <div class="logro">✅ Salvador de Algorithmia - Restauraste el Código Perdido</div>
+                        </div>
+                    </div>
+                    
+                    <div class="acciones-finales">
+                        <button id="jugar-de-nuevo" class="btn-principal">🔄 Jugar de Nuevo</button>
+                        <button id="compartir-victoria" class="btn-secundario">📱 Compartir Victoria</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Game Over -->
+        <div id="pantalla-game-over" class="pantalla">
+            <div class="game-over-content">
+                <h1 class="titulo-game-over">💀 Game Over 💀</h1>
+                <p>No te rindas, joven programador. Incluso los mejores desarrolladores fallan antes de triunfar.</p>
+                <button id="reintentar" class="btn-principal">🔄 Intentar de Nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio oculto para efectos de sonido -->
+    <div class="audio-container" style="display: none;">
+        <audio id="audio-correcto" preload="auto">
+            <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmIcBTCN0/PSeC0GI4DC7+OUPwgUZr" type="audio/wav">
+        </audio>
+        <audio id="audio-incorrecto" preload="auto">
+            <source src="data:audio/wav;base64,UklGRuoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YcYGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmIcBTCN0/PSeC0GI4DC7+OUPwgUZbXo66pWFA" type="audio/wav">
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

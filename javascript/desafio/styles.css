@@ -1,0 +1,974 @@
+/* ===============================================
+   LA LEYENDA DEL CÓDIGO PERDIDO - ESTILOS
+   =============================================== */
+
+/* Variables CSS para el tema fantástico */
+:root {
+    --color-primario: #6366f1;
+    --color-secundario: #8b5cf6;
+    --color-acento: #f59e0b;
+    --color-exito: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+    
+    --color-fondo: #0f0f23;
+    --color-superficie: #1e1e3f;
+    --color-superficie-elevada: #2d2d5f;
+    --color-texto: #ffffff;
+    --color-texto-secundario: #a1a1aa;
+    
+    --fuente-principal: 'Georgia', 'Times New Roman', serif;
+    --fuente-codigo: 'Courier New', monospace;
+    
+    --sombra-magica: 0 0 20px rgba(99, 102, 241, 0.3);
+    --sombra-elevada: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --sombra-interna: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+    
+    --gradiente-magico: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    --gradiente-dorado: linear-gradient(135deg, #fbbf24, #f59e0b);
+    --gradiente-victoria: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background: radial-gradient(ellipse at center, #1e1e3f 0%, #0f0f23 100%);
+    color: var(--color-texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo animado con estrellas */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: estrellas 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes estrellas {
+    from { transform: translateX(0); }
+    to { transform: translateX(-200px); }
+}
+
+/* Contenedor principal */
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Pantallas del juego */
+.pantalla {
+    display: none;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+.oculto {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================================
+   PANTALLA DE INICIO
+   =============================================== */
+
+.intro-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.titulo-principal {
+    font-size: 3.5rem;
+    background: var(--gradiente-dorado);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+    margin-bottom: 1rem;
+    animation: brillo 2s ease-in-out infinite alternate;
+}
+
+@keyframes brillo {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.2); }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.historia-intro {
+    background: var(--color-superficie);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    border: 2px solid var(--color-primario);
+    box-shadow: var(--sombra-magica);
+    backdrop-filter: blur(10px);
+}
+
+.historia-intro p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.personaje-creation {
+    background: var(--color-superficie-elevada);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--color-secundario);
+    box-shadow: var(--sombra-elevada);
+}
+
+.personaje-creation h3 {
+    margin-bottom: 1.5rem;
+    color: var(--color-acento);
+    font-size: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 2rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+.input-group input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    border: 2px solid var(--color-primario);
+    border-radius: 8px;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+.clases-heroe {
+    margin-bottom: 2rem;
+}
+
+.clases-heroe label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+.clase-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.clase-btn {
+    background: var(--color-superficie);
+    border: 2px solid var(--color-primario);
+    color: var(--color-texto);
+    padding: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--fuente-principal);
+    text-align: center;
+}
+
+.clase-btn:hover {
+    border-color: var(--color-acento);
+    box-shadow: var(--sombra-magica);
+    transform: translateY(-3px);
+}
+
+.clase-btn.seleccionada {
+    background: var(--gradiente-magico);
+    border-color: var(--color-acento);
+    box-shadow: var(--sombra-magica);
+}
+
+.clase-btn small {
+    display: block;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ===============================================
+   PANEL DEL HÉROE
+   =============================================== */
+
+.panel-heroe {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--color-superficie-elevada);
+    border: 2px solid var(--color-primario);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: var(--sombra-elevada);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.heroe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.heroe-avatar {
+    text-align: center;
+}
+
+.heroe-avatar span {
+    font-size: 3rem;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.heroe-datos h3 {
+    color: var(--color-acento);
+    margin-bottom: 0.5rem;
+}
+
+.progreso {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.barra-progreso {
+    flex: 1;
+    height: 20px;
+    background: var(--color-fondo);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--color-primario);
+}
+
+.vida {
+    height: 100%;
+    background: var(--gradiente-victoria);
+    transition: width 0.5s ease;
+}
+
+.fragmentos-contador h4 {
+    color: var(--color-acento);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.fragmentos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.fragmento {
+    background: var(--color-fondo);
+    border: 2px solid var(--color-primario);
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    transition: all 0.5s ease;
+}
+
+.fragmento.obtenido {
+    opacity: 1;
+    border-color: var(--color-acento);
+    background: var(--gradiente-dorado);
+    animation: pulso 1s ease-in-out;
+}
+
+@keyframes pulso {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ===============================================
+   DESAFÍOS
+   =============================================== */
+
+.desafio-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.desafio-header h2 {
+    font-size: 2.5rem;
+    background: var(--gradiente-magico);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.ubicacion {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    font-style: italic;
+}
+
+.escena {
+    background: var(--color-superficie);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 2px solid var(--color-primario);
+    box-shadow: var(--sombra-magica);
+}
+
+.imagen-escena {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+.dialogo {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Desafío 1: Acertijo Poético */
+.acertijo-poetico {
+    background: var(--color-superficie-elevada);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid var(--color-secundario);
+    box-shadow: var(--sombra-elevada);
+}
+
+.poema {
+    background: var(--color-fondo);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-primario);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    box-shadow: var(--sombra-interna);
+}
+
+.opciones-acertijo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.opcion-btn {
+    background: var(--gradiente-magico);
+    border: none;
+    color: var(--color-texto);
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.opcion-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.opcion-btn:active {
+    transform: translateY(0);
+}
+
+/* Desafío 2: Lógica */
+.logica-challenge {
+    background: var(--color-superficie-elevada);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid var(--color-secundario);
+    box-shadow: var(--sombra-elevada);
+}
+
+.logica-challenge h3 {
+    color: var(--color-acento);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.secuencia {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.numero-box {
+    width: 60px;
+    height: 60px;
+    background: var(--gradiente-magico);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: var(--sombra-elevada);
+}
+
+.numero-box.missing {
+    background: var(--color-fondo);
+    border: 2px dashed var(--color-acento);
+    color: var(--color-acento);
+    animation: parpadeo 1.5s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.input-area {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.input-area input {
+    padding: 12px;
+    border: 2px solid var(--color-primario);
+    border-radius: 8px;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-size: 1.2rem;
+    text-align: center;
+    width: 150px;
+}
+
+.pista {
+    background: var(--color-fondo);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--color-acento);
+    margin-top: 1rem;
+}
+
+/* Desafío 3: Secuencia de botones */
+.ritual-magico {
+    background: var(--color-superficie-elevada);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid var(--color-secundario);
+    box-shadow: var(--sombra-elevada);
+    text-align: center;
+}
+
+.instrucciones {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.botones-magicos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 300px;
+    margin: 2rem auto;
+}
+
+.boton-magico {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.boton-magico:hover {
+    transform: scale(1.05);
+}
+
+.boton-magico:active {
+    transform: scale(0.95);
+}
+
+.boton-magico.rojo {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.boton-magico.azul {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.boton-magico.verde {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.boton-magico.amarillo {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.boton-magico.iluminado {
+    animation: iluminar 0.5s ease-in-out;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px currentColor;
+}
+
+@keyframes iluminar {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.controles-ritual {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.progreso-ritual {
+    background: var(--color-fondo);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--color-primario);
+}
+
+/* Desafío 4: Pregunta final */
+.pregunta-final {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pergamino {
+    background: var(--color-superficie-elevada);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 2px solid var(--color-acento);
+    box-shadow: var(--sombra-elevada);
+    position: relative;
+}
+
+.pergamino::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--gradiente-dorado);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.pergamino h3 {
+    color: var(--color-acento);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.respuesta-area {
+    margin: 2rem 0;
+}
+
+.respuesta-area textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+    border: 2px solid var(--color-primario);
+    border-radius: 10px;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    font-size: 1.1rem;
+    resize: vertical;
+}
+
+.respuesta-area textarea:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+.ayuda-final {
+    background: var(--color-fondo);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--color-acento);
+    margin-top: 1rem;
+}
+
+/* ===============================================
+   BOTONES
+   =============================================== */
+
+.btn-principal {
+    background: var(--gradiente-dorado);
+    border: none;
+    color: var(--color-fondo);
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    font-family: var(--fuente-principal);
+}
+
+.btn-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.btn-principal:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secundario {
+    background: var(--color-superficie);
+    border: 2px solid var(--color-primario);
+    color: var(--color-texto);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--fuente-principal);
+}
+
+.btn-secundario:hover {
+    border-color: var(--color-acento);
+    box-shadow: var(--sombra-magica);
+}
+
+.btn-verificar {
+    background: var(--gradiente-victoria);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: var(--fuente-principal);
+}
+
+.btn-verificar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-ritual {
+    background: var(--gradiente-magico);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-family: var(--fuente-principal);
+}
+
+.btn-ritual:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-ritual:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===============================================
+   FEEDBACK
+   =============================================== */
+
+.feedback-area {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.feedback-correcto {
+    background: var(--gradiente-victoria);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-weight: bold;
+    animation: aparecer 0.5s ease-in-out;
+}
+
+.feedback-incorrecto {
+    background: linear-gradient(135deg, var(--color-error), #dc2626);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-weight: bold;
+    animation: aparecer 0.5s ease-in-out;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===============================================
+   PANTALLA DE VICTORIA
+   =============================================== */
+
+.victoria-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.titulo-victoria {
+    font-size: 3rem;
+    background: var(--gradiente-dorado);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    animation: brillo 1s ease-in-out infinite alternate;
+}
+
+.celebracion {
+    display: grid;
+    gap: 2rem;
+}
+
+.codigo-restaurado {
+    background: var(--color-superficie-elevada);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--color-acento);
+    box-shadow: var(--sombra-elevada);
+}
+
+.codigo-final {
+    background: var(--color-fondo);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    border: 1px solid var(--color-primario);
+}
+
+.codigo-final pre {
+    font-family: var(--fuente-codigo);
+    color: var(--color-acento);
+    font-size: 1.1rem;
+    overflow-x: auto;
+}
+
+.heroe-final {
+    background: var(--color-superficie);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--color-primario);
+    box-shadow: var(--sombra-magica);
+}
+
+.logros {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.logros h4 {
+    color: var(--color-acento);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.logro {
+    background: var(--color-fondo);
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-exito);
+    animation: deslizar 0.5s ease-in-out;
+}
+
+@keyframes deslizar {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.acciones-finales {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ===============================================
+   PANTALLA GAME OVER
+   =============================================== */
+
+.game-over-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-superficie);
+    border-radius: 15px;
+    border: 2px solid var(--color-error);
+    box-shadow: var(--sombra-elevada);
+}
+
+.titulo-game-over {
+    font-size: 2.5rem;
+    color: var(--color-error);
+    margin-bottom: 1rem;
+    animation: temblar 0.5s ease-in-out;
+}
+
+@keyframes temblar {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ===============================================
+   RESPONSIVE DESIGN
+   =============================================== */
+
+@media (max-width: 768px) {
+    .titulo-principal {
+        font-size: 2.5rem;
+    }
+    
+    .game-container {
+        padding: 10px;
+    }
+    
+    .panel-heroe {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: 2rem;
+        max-width: none;
+    }
+    
+    .clase-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .secuencia {
+        justify-content: center;
+    }
+    
+    .numero-box {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .botones-magicos {
+        max-width: 250px;
+    }
+    
+    .boton-magico {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .desafio-header h2 {
+        font-size: 2rem;
+    }
+    
+    .titulo-victoria {
+        font-size: 2rem;
+    }
+    
+    .acciones-finales {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 2rem;
+    }
+    
+    .historia-intro,
+    .personaje-creation {
+        padding: 1rem;
+    }
+    
+    .botones-magicos {
+        max-width: 200px;
+        gap: 0.5rem;
+    }
+    
+    .boton-magico {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
