@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Selectores, Combinadores y Variables CSS</title>
+    <style>
+        /* Variables CSS - Se definen en :root para uso global */
+        :root {
+            --color-primary: #3498db;
+            --color-secondary: #e74c3c;
+            --color-success: #2ecc71;
+            --color-warning: #f39c12;
+            --color-text: #2c3e50;
+            --color-bg: #ecf0f1;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --border-radius: 6px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            padding: var(--spacing-md);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* =============================================
+           EJEMPLOS DE SELECTORES BÁSICOS
+           ============================================= */
+
+        /* Selector de elemento */
+        h1 {
+            color: var(--color-primary);
+            text-align: left;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Selector de ID */
+        #introduccion {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        /* Selector de clase */
+        .seccion {
+            background: white;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ejemplo {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .codigo {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* =============================================
+           EJEMPLOS DE SELECTORES DE ATRIBUTO
+           ============================================= */
+
+        /* Atributo exacto */
+        input[type="text"] {
+            border: 2px solid var(--color-primary);
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+        }
+
+        /* Atributo que contiene valor */
+        a[href*="github"] {
+            background-color: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        /* Atributo que empieza con valor */
+        a[href^="https"] {
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        /* Atributo que termina con valor */
+        a[href$=".pdf"] {
+            color: var(--color-secondary);
+        }
+
+        /* =============================================
+           EJEMPLOS DE PSEUDOCLASES
+           ============================================= */
+
+        .boton {
+            background-color: var(--color-primary);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 4px;
+        }
+
+        .boton:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .boton:active {
+            transform: translateY(0);
+        }
+
+        .boton:focus {
+            outline: 2px solid var(--color-warning);
+            outline-offset: 2px;
+        }
+
+        /* Primera y última ocurrencia */
+        .lista-ejemplo li:first-child {
+            background-color: var(--color-success);
+            color: white;
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+        }
+
+        .lista-ejemplo li:last-child {
+            background-color: var(--color-warning);
+            color: white;
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+        }
+
+        /* Nth-child ejemplos */
+        .grid-ejemplo div:nth-child(even) {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .grid-ejemplo div:nth-child(odd) {
+            background-color: var(--color-bg);
+        }
+
+        .grid-ejemplo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+
+        .grid-ejemplo div {
+            padding: var(--spacing-md);
+            text-align: center;
+            border-radius: var(--border-radius);
+        }
+
+        /* =============================================
+           EJEMPLOS DE PSEUDOELEMENTOS
+           ============================================= */
+
+        .titulo-decorado::before {
+            content: "🎯 ";
+            color: var(--color-primary);
+        }
+
+        .titulo-decorado::after {
+            content: " ✨";
+            color: var(--color-warning);
+        }
+
+        .parrafo-inicial::first-letter {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--color-primary);
+            float: left;
+            line-height: 1;
+            margin-right: 8px;
+            margin-top: 4px;
+        }
+
+        .lista-viñetas li::before {
+            content: "▶ ";
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .lista-viñetas {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lista-viñetas li {
+            padding: 4px 0;
+        }
+
+        /* =============================================
+           EJEMPLOS DE COMBINADORES
+           ============================================= */
+
+        /* Combinador descendiente (espacio) */
+        .contenedor-padre p {
+            color: var(--color-primary);
+            background-color: rgba(52, 152, 219, 0.1);
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+        }
+
+        /* Combinador hijo directo (>) */
+        .contenedor-padre > .hijo-directo {
+            border: 2px solid var(--color-success);
+            padding: var(--spacing-md);
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Combinador hermano adyacente (+) */
+        .titulo-hermano + p {
+            background-color: var(--color-warning);
+            color: white;
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-weight: bold;
+        }
+
+        /* Combinador hermanos generales (~) */
+        .titulo-hermano ~ .hermano-general {
+            background-color: var(--color-success);
+            color: white;
+            padding: var(--spacing-sm);
+            margin: var(--spacing-sm) 0;
+            border-radius: var(--border-radius);
+        }
+
+        /* =============================================
+           EJEMPLOS AVANZADOS CON VARIABLES
+           ============================================= */
+
+        .tema-oscuro {
+            --color-text: #ecf0f1;
+            --color-bg: #2c3e50;
+            --color-primary: #3498db;
+        }
+
+        .tema-oscuro .seccion {
+            background-color: #34495e;
+            color: var(--color-text);
+        }
+
+        /* Media queries con variables */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-lg: 16px;
+                --spacing-md: 12px;
+                --spacing-sm: 6px;
+            }
+            
+            .grid-ejemplo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* =============================================
+           UTILIDADES
+           ============================================= */
+
+        .highlight {
+            background-color: var(--color-warning);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: var(--spacing-md);
+        }
+
+        .mb-2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .p-2 {
+            padding: var(--spacing-md);
+        }
+
+        /* Animación con variables */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .animado:hover {
+            animation: bounce 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guía Completa: Selectores, Combinadores y Variables CSS</h1>
+        
+        <div id="introduccion">
+            <h2>¡Bienvenido a la guía práctica de CSS!</h2>
+            <p>Este documento demuestra todos los conceptos fundamentales con ejemplos visuales</p>
+        </div>
+
+        <!-- VARIABLES CSS -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Variables CSS (Custom Properties)</h2>
+            <div class="ejemplo">
+                <h3>¿Qué son las variables CSS?</h3>
+                <p>Las variables CSS permiten almacenar valores que se pueden reutilizar en todo el documento. Se definen con <span class="highlight">--nombre-variable</span> y se usan con <span class="highlight">var(--nombre-variable)</span>.</p>
+                
+                <div class="codigo">
+:root {
+  --color-primary: #3498db;
+  --spacing-md: 16px;
+}
+
+.elemento {
+  color: var(--color-primary);
+  padding: var(--spacing-md);
+}
+                </div>
+                
+                <h4>Ventajas de las variables:</h4>
+                <ul class="lista-viñetas">
+                    <li>Fácil mantenimiento</li>
+                    <li>Consistencia en el diseño</li>
+                    <li>Cambios dinámicos con JavaScript</li>
+                    <li>Responsive design simplificado</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SELECTORES BÁSICOS -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Selectores Básicos</h2>
+            
+            <div class="ejemplo">
+                <h3>1. Selector de Elemento</h3>
+                <p>Selecciona todos los elementos de un tipo específico.</p>
+                <div class="codigo">
+h1 { color: blue; }    /* Todos los h1 */
+p { margin: 10px; }    /* Todos los párrafos */
+                </div>
+            </div>
+
+            <div class="ejemplo">
+                <h3>2. Selector de ID</h3>
+                <p>Selecciona un elemento único con un ID específico.</p>
+                <div class="codigo">
+#introduccion { background: blue; }    /* Solo el elemento con id="introduccion" */
+                </div>
+            </div>
+
+            <div class="ejemplo">
+                <h3>3. Selector de Clase</h3>
+                <p>Selecciona todos los elementos con una clase específica.</p>
+                <div class="codigo">
+.seccion { padding: 20px; }    /* Todos los elementos con class="seccion" */
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTORES DE ATRIBUTO -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Selectores de Atributo</h2>
+            
+            <div class="ejemplo">
+                <h3>Ejemplos de selectores de atributo:</h3>
+                <input type="text" placeholder="input[type='text'] - Borde azul">
+                <br><br>
+                <a href="https://github.com/ejemplo">Enlace a GitHub (fondo oscuro)</a>
+                <br><br>
+                <a href="https://example.com">Enlace HTTPS (verde)</a>
+                <br><br>
+                <a href="documento.pdf">Enlace PDF (rojo)</a>
+                
+                <div class="codigo mt-2">
+input[type="text"] { border: 2px solid blue; }
+a[href*="github"] { background: black; color: white; }
+a[href^="https"] { color: green; }
+a[href$=".pdf"] { color: red; }
+                </div>
+            </div>
+        </section>
+
+        <!-- PSEUDOCLASES -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Pseudoclases</h2>
+            
+            <div class="ejemplo">
+                <h3>Estados interactivos:</h3>
+                <button class="boton">Hover me!</button>
+                <button class="boton">Click me!</button>
+                <button class="boton">Focus me!</button>
+                
+                <h4 class="mt-2">Posición en el DOM:</h4>
+                <ul class="lista-ejemplo">
+                    <li>Primer elemento (verde)</li>
+                    <li>Elemento del medio</li>
+                    <li>Elemento del medio</li>
+                    <li>Último elemento (naranja)</li>
+                </ul>
+                
+                <h4>nth-child examples:</h4>
+                <div class="grid-ejemplo">
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                </div>
+                
+                <div class="codigo">
+.boton:hover { background: red; transform: translateY(-2px); }
+li:first-child { background: green; }
+li:last-child { background: orange; }
+div:nth-child(even) { background: blue; }
+                </div>
+            </div>
+        </section>
+
+        <!-- PSEUDOELEMENTOS -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Pseudoelementos</h2>
+            
+            <div class="ejemplo">
+                <h3>Contenido generado:</h3>
+                <p class="parrafo-inicial">Este párrafo tiene una letra inicial grande y decorada usando ::first-letter.</p>
+                
+                <h4>Lista con viñetas personalizadas:</h4>
+                <ul class="lista-viñetas">
+                    <li>Elemento con flecha personalizada</li>
+                    <li>Otro elemento con flecha</li>
+                    <li>Tercer elemento con flecha</li>
+                </ul>
+                
+                <div class="codigo">
+.titulo::before { content: "🎯 "; }
+.titulo::after { content: " ✨"; }
+p::first-letter { font-size: 3em; float: left; }
+li::before { content: "▶ "; color: blue; }
+                </div>
+            </div>
+        </section>
+
+        <!-- COMBINADORES -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Combinadores</h2>
+            
+            <div class="ejemplo">
+                <h3>1. Combinador Descendiente (espacio)</h3>
+                <div class="contenedor-padre">
+                    <p>Este párrafo está dentro de .contenedor-padre (fondo azul claro)</p>
+                    <div>
+                        <p>Este párrafo también está dentro, pero anidado más profundo</p>
+                    </div>
+                </div>
+                
+                <div class="codigo">
+.contenedor-padre p { background: lightblue; }
+                </div>
+            </div>
+            
+            <div class="ejemplo">
+                <h3>2. Combinador Hijo Directo (>)</h3>
+                <div class="contenedor-padre">
+                    <div class="hijo-directo">Este es un hijo directo (borde verde)</div>
+                    <div>
+                        <div class="hijo-directo">Este NO es hijo directo (sin borde)</div>
+                    </div>
+                </div>
+                
+                <div class="codigo">
+.contenedor-padre > .hijo-directo { border: 2px solid green; }
+                </div>
+            </div>
+            
+            <div class="ejemplo">
+                <h3>3. Hermano Adyacente (+)</h3>
+                <h4 class="titulo-hermano">Título hermano</h4>
+                <p>Este párrafo es el hermano inmediatamente siguiente (fondo naranja)</p>
+                <p>Este párrafo NO es el hermano inmediato</p>
+                
+                <div class="codigo">
+.titulo-hermano + p { background: orange; }
+                </div>
+            </div>
+            
+            <div class="ejemplo">
+                <h3>4. Hermanos Generales (~)</h3>
+                <h4 class="titulo-hermano">Otro título hermano</h4>
+                <div class="hermano-general">Primer hermano general (verde)</div>
+                <p>Un párrafo intermedio</p>
+                <div class="hermano-general">Segundo hermano general (verde)</div>
+                
+                <div class="codigo">
+.titulo-hermano ~ .hermano-general { background: green; }
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTORES AVANZADOS -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Selectores Avanzados</h2>
+            
+            <div class="ejemplo">
+                <h3>Agrupación de selectores:</h3>
+                <div class="codigo">
+h1, h2, h3 { font-family: serif; }
+p.especial { font-weight: bold; }
+input[type="text"]:focus { border-color: blue; }
+                </div>
+            </div>
+            
+            <div class="ejemplo tema-oscuro p-2">
+                <h3>Tema oscuro (redefiniendo variables):</h3>
+                <p>Este contenedor usa variables redefinidas para crear un tema oscuro.</p>
+                
+                <div class="codigo">
+.tema-oscuro {
+    --color-text: #ecf0f1;
+    --color-bg: #2c3e50;
+}
+                </div>
+            </div>
+        </section>
+
+        <!-- RESPONSIVE CON VARIABLES -->
+        <section class="seccion">
+            <h2 class="titulo-decorado">Responsive Design con Variables</h2>
+            
+            <div class="ejemplo">
+                <h3>Las variables cambian según el tamaño de pantalla:</h3>
+                <p>Redimensiona la ventana para ver cómo cambian los espaciados y la grilla.</p>
+                
+                <div class="codigo">
+@media (max-width: 768px) {
+    :root {
+        --spacing-lg: 16px;  /* Menos espacio en móviles */
+        --spacing-md: 12px;
+    }
+}
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center mt-2">
+            <button class="boton animado">¡Botón animado con hover!</button>
+            <p>Haz hover sobre el botón para ver la animación</p>
+        </div>
+    </div>
+</body>
+</html>

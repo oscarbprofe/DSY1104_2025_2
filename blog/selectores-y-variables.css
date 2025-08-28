@@ -1,0 +1,363 @@
+/*
+======================================================
+CSS TUTORIAL: SELECTORES, COMBINADORES Y VARIABLES
+======================================================
+
+Este archivo CSS demuestra los conceptos fundamentales de:
+1. Selectores básicos y avanzados
+2. Combinadores 
+3. Variables CSS (Custom Properties)
+*/
+
+/* ==========================================
+   VARIABLES CSS (Custom Properties)
+   ========================================== */
+
+/* Las variables CSS se definen con -- y se usan con var() */
+:root {
+  /* Colores principales */
+  --color-primario: #3498db;
+  --color-secundario: #e74c3c;
+  --color-texto: #2c3e50;
+  --color-fondo: #ecf0f1;
+  --color-acento: #f39c12;
+  
+  /* Tipografía */
+  --fuente-principal: 'Arial', sans-serif;
+  --fuente-titulo: 'Georgia', serif;
+  --tamaño-texto-base: 16px;
+  --tamaño-titulo: 2.5rem;
+  
+  /* Espaciado */
+  --margen-pequeño: 8px;
+  --margen-mediano: 16px;
+  --margen-grande: 32px;
+  
+  /* Bordes y sombras */
+  --borde-redondeado: 8px;
+  --sombra-suave: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ==========================================
+   SELECTORES BÁSICOS
+   ========================================== */
+
+/* Selector de elemento - Aplica a todos los elementos del tipo */
+body {
+  font-family: var(--fuente-principal);
+  font-size: var(--tamaño-texto-base);
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  line-height: 1.6;
+  margin: 0;
+  padding: var(--margen-mediano);
+}
+
+/* Selector de ID - Aplica a un elemento específico con ese ID */
+#encabezado-principal {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+  color: white;
+  text-align: center;
+  padding: var(--margen-grande);
+  border-radius: var(--borde-redondeado);
+  box-shadow: var(--sombra-suave);
+  margin-bottom: var(--margen-grande);
+}
+
+/* Selector de clase - Aplica a todos los elementos con esa clase */
+.entrada-blog {
+  background: white;
+  padding: var(--margen-mediano);
+  margin-bottom: var(--margen-mediano);
+  border-radius: var(--borde-redondeado);
+  box-shadow: var(--sombra-suave);
+  border-left: 4px solid var(--color-primario);
+}
+
+.fecha-publicacion {
+  color: var(--color-acento);
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.destacado {
+  background-color: var(--color-acento);
+  color: white;
+  padding: var(--margen-pequeño);
+  border-radius: var(--borde-redondeado);
+  font-weight: bold;
+}
+
+/* ==========================================
+   SELECTORES DE ATRIBUTO
+   ========================================== */
+
+/* Selector por atributo exacto */
+a[href="../index.html"] {
+  background-color: var(--color-primario);
+  color: white;
+  padding: var(--margen-pequeño) var(--margen-mediano);
+  text-decoration: none;
+  border-radius: var(--borde-redondeado);
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+/* Selector por atributo que contiene un valor */
+img[alt*="montaña"] {
+  border: 3px solid var(--color-secundario);
+  border-radius: var(--borde-redondeado);
+}
+
+/* Selector por atributo que empieza con un valor */
+a[href^="http"] {
+  color: var(--color-secundario);
+  font-weight: bold;
+}
+
+/* ==========================================
+   PSEUDOCLASES
+   ========================================== */
+
+/* Hover - Cuando el cursor está sobre el elemento */
+a:hover {
+  background-color: var(--color-secundario) !important;
+  transform: translateY(-2px);
+}
+
+/* First-child - Primer hijo de su contenedor */
+.entrada-blog:first-child {
+  border-top: 3px solid var(--color-acento);
+}
+
+/* Last-child - Último hijo de su contenedor */
+.entrada-blog:last-child {
+  margin-bottom: var(--margen-grande);
+}
+
+/* Nth-child - Elementos en posiciones específicas */
+li:nth-child(odd) {
+  background-color: rgba(52, 152, 219, 0.1);
+  padding: var(--margen-pequeño);
+  border-radius: 4px;
+}
+
+/* ==========================================
+   COMBINADORES
+   ========================================== */
+
+/* COMBINADOR DESCENDIENTE (espacio)
+   Selecciona todos los elementos que son descendientes */
+.entrada-blog p {
+  margin-bottom: var(--margen-mediano);
+  text-align: justify;
+}
+
+/* COMBINADOR HIJO DIRECTO (>)
+   Selecciona solo los hijos directos */
+.entrada-blog > h2 {
+  color: var(--color-primario);
+  font-family: var(--fuente-titulo);
+  border-bottom: 2px solid var(--color-primario);
+  padding-bottom: var(--margen-pequeño);
+}
+
+/* COMBINADOR HERMANO ADYACENTE (+)
+   Selecciona el elemento inmediatamente siguiente */
+h2 + p {
+  font-weight: bold;
+  color: var(--color-acento);
+}
+
+/* COMBINADOR HERMANOS GENERALES (~)
+   Selecciona todos los hermanos siguientes */
+h2 ~ ul {
+  background-color: rgba(243, 156, 18, 0.1);
+  padding: var(--margen-mediano);
+  border-radius: var(--borde-redondeado);
+  border-left: 3px solid var(--color-acento);
+}
+
+/* ==========================================
+   SELECTORES MÚLTIPLES Y AGRUPACIÓN
+   ========================================== */
+
+/* Seleccionar múltiples elementos con la misma regla */
+h1, h2, h3 {
+  font-family: var(--fuente-titulo);
+  margin-top: 0;
+}
+
+/* Combinar clase y elemento */
+p.destacado {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   PSEUDOELEMENTOS
+   ========================================== */
+
+/* Before - Insertar contenido antes del elemento */
+.entrada-blog h2::before {
+  content: "📝 ";
+  margin-right: var(--margen-pequeño);
+}
+
+/* After - Insertar contenido después del elemento */
+.fecha-publicacion::after {
+  content: " 📅";
+}
+
+/* First-letter - Primera letra del elemento */
+.entrada-blog p:first-of-type::first-letter {
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--color-primario);
+  float: left;
+  line-height: 1;
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+/* ==========================================
+   SELECTORES AVANZADOS
+   ========================================== */
+
+/* Not - Excluir elementos específicos */
+li:not(.especial) {
+  padding-left: var(--margen-mediano);
+}
+
+/* Has - Seleccionar padres que contienen elementos específicos */
+/* Nota: :has() es una característica nueva, puede no estar disponible en todos los navegadores */
+.entrada-blog:has(ul) {
+  border-left-color: var(--color-acento);
+}
+
+/* ==========================================
+   RESPONSIVE USANDO VARIABLES
+   ========================================== */
+
+/* Media queries que modifican variables */
+@media screen and (max-width: 768px) {
+  :root {
+    --tamaño-texto-base: 14px;
+    --tamaño-titulo: 2rem;
+    --margen-grande: 20px;
+    --margen-mediano: 12px;
+  }
+  
+  .entrada-blog p:first-of-type::first-letter {
+    font-size: 2em;
+  }
+}
+
+/* ==========================================
+   EJEMPLOS DE HERENCIA Y CASCADA
+   ========================================== */
+
+/* Las variables se heredan y pueden ser redefinidas */
+.tema-oscuro {
+  --color-texto: #ecf0f1;
+  --color-fondo: #2c3e50;
+  --color-primario: #3498db;
+}
+
+.tema-oscuro .entrada-blog {
+  background-color: #34495e;
+  color: var(--color-texto);
+}
+
+/* ==========================================
+   ANIMACIONES CON VARIABLES
+   ========================================== */
+
+@keyframes pulso {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.entrada-blog:hover {
+  animation: pulso 0.6s ease-in-out;
+  --color-primario: #e74c3c; /* Cambiar variable temporalmente */
+  border-left-color: var(--color-primario);
+}
+
+/* ==========================================
+   UTILIDADES CON VARIABLES
+   ========================================== */
+
+.centrado {
+  text-align: center;
+  margin: var(--margen-grande) auto;
+}
+
+.sombra-intensa {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.borde-redondeado {
+  border-radius: var(--borde-redondeado);
+}
+
+/* ==========================================
+   FOOTER CON MÚLTIPLES SELECTORES
+   ========================================== */
+
+footer,
+.pie-pagina,
+[role="contentinfo"] {
+  background-color: var(--color-texto);
+  color: var(--color-fondo);
+  text-align: center;
+  padding: var(--margen-grande);
+  margin-top: var(--margen-grande);
+  border-radius: var(--borde-redondeado) var(--borde-redondeado) 0 0;
+}
+
+footer a,
+.pie-pagina a {
+  color: var(--color-primario);
+  text-decoration: underline;
+}
+
+footer a:hover,
+.pie-pagina a:hover {
+  color: var(--color-acento);
+}
+
+/*
+========================================
+RESUMEN DE CONCEPTOS DEMOSTRADOS:
+========================================
+
+SELECTORES:
+- Elemento: body, h1, p
+- ID: #encabezado-principal
+- Clase: .entrada-blog, .destacado
+- Atributo: [href="../index.html"], [alt*="montaña"]
+- Pseudoclases: :hover, :first-child, :nth-child()
+- Pseudoelementos: ::before, ::after, ::first-letter
+
+COMBINADORES:
+- Descendiente: .entrada-blog p
+- Hijo directo: .entrada-blog > h2
+- Hermano adyacente: h2 + p
+- Hermanos generales: h2 ~ ul
+
+VARIABLES CSS:
+- Definición: --nombre-variable: valor
+- Uso: var(--nombre-variable)
+- Herencia y redefinición
+- Uso en media queries
+- Fallbacks: var(--color, blue)
+
+CONCEPTOS AVANZADOS:
+- Especificidad y cascada
+- Herencia de variables
+- Media queries responsivos
+- Animaciones con variables
+*/
