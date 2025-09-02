@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro con Validaciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="registroForm" novalidate>
+            <h2>Formulario de Registro</h2>
+            
+            <div class="form-group">
+                <label for="rut">RUT:</label>
+                <input type="text" id="rut" name="rut" required 
+                       placeholder="Ingrese RUT sin puntos ni guión"
+                       maxlength="12"
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required
+                       pattern="^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]{2,50}$"
+                       placeholder="Ingrese su nombre completo">
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required
+                       placeholder="ejemplo@dominio.com">
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required
+                       pattern="\+?56\s?9\s?\d{8}"
+                       placeholder="+56 9 12345678">
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Contraseña:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <small class="error-message"></small>
+            </div>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+   <!--  <script src="script.js"></script> -->
+</body>
+</html>
