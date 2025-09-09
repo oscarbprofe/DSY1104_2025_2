@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es" data-theme="gamer">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Level-Up Gamer — Productos</title>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;600;700&family=Orbitron:wght@600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../index.css">
+  <!-- JavaScript-->
+  <script type="module" src="../js/productos.js"></script>
+</head>
+<body>
+  <a href="#contenido" class="sr-only">Saltar al contenido</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../" aria-label="Ir al inicio">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Level-Up</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Principal">
+        <ul class="menu">
+          <li><a href="../">Inicio</a></li>
+          <li><a href="./" aria-current="page">Productos</a></li>
+          <li><a href="../blog">Blog</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button class="btn-icon" type="button" aria-label="Abrir carrito">
+          🛒 <span class="badge" id="cart-count" aria-live="polite">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main id="contenido" class="products-page">
+    <div class="container">
+      <div class="products-layout">
+        <!-- Filtros y Categorías -->
+        <aside class="filters-panel">
+          <div class="panel-header">
+            <h2>Categorías</h2>
+          </div>
+          <nav aria-label="Categorías de productos">
+            <ul class="categories-menu" id="categories-list">
+              <!-- Se genera dinámicamente desde JS -->
+            </ul>
+          </nav>
+          <div class="panel-header">
+            <h2>Filtros</h2>
+          </div>
+          <div class="filters-group">
+            <div class="price-range">
+              <label for="max-price">Precio máximo</label>
+              <input type="range" id="max-price" min="0" max="1500000" step="10000">
+              <span class="price-value">$<output for="max-price">1500000</output></span>
+            </div>
+            <div class="stock-filter">
+              <label class="checkbox-wrapper">
+                <input type="checkbox" id="in-stock">
+                <span>Solo productos en stock</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Grid de Productos -->
+        <section class="products-grid-section">
+          <div class="products-header">
+            <h1>Nuestros Productos</h1>
+            <div class="view-options">
+              <label for="sort-products">Ordenar por:</label>
+              <select id="sort-products" class="sort-select">
+                <option value="featured">Destacados</option>
+                <option value="price-asc">Menor precio</option>
+                <option value="price-desc">Mayor precio</option>
+                <option value="name-asc">Nombre A-Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="products-grid" id="products-grid">
+            <!-- Se genera dinámicamente desde JS -->
+          </div>
+
+          <!-- Paginación -->
+          <div class="pagination" id="pagination">
+            <button class="btn-outline" id="prev-page" disabled>Anterior</button>
+            <div class="page-numbers" id="page-numbers">
+              <!-- Se genera dinámicamente desde JS -->
+            </div>
+            <button class="btn-outline" id="next-page">Siguiente</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Level-Up Gamer</h4>
+        <p>Tu destino gaming definitivo</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <nav aria-label="Enlaces de pie">
+          <ul class="menu" style="flex-direction:column; gap:.25rem">
+            <li><a href="../">Inicio</a></li>
+            <li><a href="./">Productos</a></li>
+            <li><a href="../blog">Blog</a></li>
+            <li><a href="../contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>soporte@levelup.com<br/>+56 9 1234 5678</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

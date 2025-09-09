@@ -1,90 +1,168 @@
-<!DOCTYPE html>
-<html lang="es">
-
+<!doctype html>
+<html lang="es" data-theme="gamer">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi página moderna</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda — HOME</title>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;600;700&family=Orbitron:wght@600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="index.css">
-  <style>
-    html {
-      font-size: 16px;
-      /* Base font size - 1rem = 16px */
-    }
-
-    body {
-      padding: 2rem;
-      /* 32px padding */
-      margin: 0;
-    }
-  </style>
-  <script>
-    console.log("Hola mundo!");
-    var num1 = 1;  // Variable inerente a la función y puede ser leída de afuera 
-    let num2 = 2;
-    const num3 = 3;
-    console.log(document);
-  </script>
+  <!-- JavaScript-->
+  <script type="module" src="./js/main.js"></script>
 </head>
-
 <body>
-  <header>
-    <h1>Mi Sitio</h1>
-    <nav>
-      <div id="nav-bar" class="nav-container">
-        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
-        <div class="nav-links">
-          <a href="/">Inicio</a>
-          <a href="/blog">Blog</a>
-          <a href="/servicios">Servicios</a>
-          <a href="/contacto">Contacto</a>
+  <a href="#contenido" class="sr-only">Saltar al contenido</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="./" aria-label="Ir al inicio">
+        <div class="logo" aria-hidden="true"></div>
+        <span>MiTienda</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Principal">
+        <ul class="menu">
+          <li><a href="./" aria-current="page">Inicio</a></li>
+          <li><a href="./productos/index.html">Productos</a></li>
+          <li><a href="./blogs.html">Blogs</a></li>
+          <li><a href="./contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <!-- Selector de theme 
+        <div class="theme-selector">
+          <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema" aria-expanded="false">
+            🎨 <span id="current-theme">Pastelería</span>
+          </button>
+          <div class="theme-menu" id="theme-menu" role="menu">
+            <button class="theme-option" data-theme="huerto" role="menuitem">
+              <div class="theme-preview" style="--preview-bg: #2E8B57; --preview-accent: #FFD700;"></div>
+              <span>Huerto Hogar</span>
+            </button>
+            <button class="theme-option" data-theme="gamer" role="menuitem">
+              <div class="theme-preview" style="--preview-bg: #0b1020; --preview-accent: #1E90FF;"></div>
+              <span>Level-Up Gamer</span>
+            </button>
+            <button class="theme-option active" data-theme="pasteleria" role="menuitem">
+              <div class="theme-preview" style="--preview-bg: #FFF5E1; --preview-accent: #FFC0CB;"></div>
+              <span>Pastelería</span>
+            </button>
+          </div>
         </div>
+        -->
+        <!-- Nota: el contador se puede actualizar con JS + aria-live -->
+        <button class="btn-icon" type="button" aria-label="Abrir carrito">
+          🛒 <span class="badge" id="cart-count" aria-live="polite">0</span>
+        </button>
+        <summary class="nav-toggle" role="button" aria-label="Abrir menú">☰</summary>
       </div>
-    </nav>
+
+      <!-- Menú móvil accesible con <details> -->
+      <details class="nav-drawer">
+        <summary class="sr-only">Abrir menú</summary>
+        <div class="drawer" role="navigation" aria-label="Menú móvil">
+          <ul class="menu">
+            <li><a href="./" aria-current="page">Inicio</a></li>
+            <li><a href="./productos.html">Productos</a></li>
+            <li><a href="./blogs.html">Blogs</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
   </header>
 
-  <main>
-    <article>
-      <header class="article_header">
-        <h2>Título de artículo</h2>
-      </header>
-      <p>Texto del artículo...</p>
-    </article>
-    <div class="circle"></div>
-    <button onclick="cambiarFondoNavBar()">Cambiar fondo del nav-bar</button>
-    <button onclick="restaurarFondoNavBar()">Restaurar fondo del nav-bar</button>
-    <div id="personas-container"></div>
+  <!-- ===================== MAIN ===================== -->
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Tu Destino Gaming Definitivo</h1>
+          <p class="lead">Descubre el mejor equipo gaming, desde consolas hasta PC's. Únete a la élite de los gamers con nuestros productos premium.</p>
+          <div class="cta-buttons">
+            <a class="btn-primary" href="./productos.html">Explorar Productos</a>
+            <a class="btn-secondary" href="./productos.html?cat=OF">Ver Ofertas</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=80" 
+               alt="Interior de tienda gaming con luces LED y equipos gaming"
+               width="700" height="467">
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="categories">
+      <div class="container">
+        <h2 class="section-title">Categorías</h2>
+        <ul class="tiles" aria-label="Listado de categorías">
+          <!-- Cambia los nombres según el caso. Puedes generar estas tiles con JS -->
+          <li><a class="tile" href="./productos.html?cat=FR">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>Frutas Frescas</strong>
+            <span class="muted">De temporada</span>
+          </a></li>
+          <li><a class="tile" href="./productos.html?cat=VR">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>Verduras</strong>
+            <span class="muted">Orgánicas</span>
+          </a></li>
+          <li><a class="tile" href="./productos.html?cat=PO">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>Orgánicos</strong>
+            <span class="muted">Miel, granos</span>
+          </a></li>
+          <li><a class="tile" href="./productos.html?cat=PL">
+            <div class="icon" aria-hidden="true"></div>
+            <strong>Lácteos</strong>
+            <span class="muted">Locales</span>
+          </a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DESTACADOS (POBLAR DESDE JS) -->
+    <section class="featured">
+      <div class="container">
+        <h2 class="section-title">Destacados</h2>
+        <div class="cards" id="featured-grid">
+        </div>
+      </div>
+    </section>
   </main>
 
-  <aside>
-    <h3>Noticias relacionadas</h3>
-    <p>Contenido adicional...</p>
-  </aside>
-
-  <footer>
-    <p>© 2025 Mi Sitio</p>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>MiTienda</h4>
+        <p>Calidad, cercanía y buenos precios.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <nav aria-label="Enlaces de pie">
+          <ul class="menu" style="flex-direction:column; gap:.25rem">
+            <li><a href="./">Inicio</a></li>
+            <li><a href="./productos.html">Productos</a></li>
+            <li><a href="./blogs.html">Blogs</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>contacto@mitienda.cl<br/>+56 9 1234 5678</p>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script>
-    if(2 === '2'){
-      console.log("2 es igual a '2' con coerción de tipo");
-    } else {
-      console.log("2 no es igual a '2'");
-    }
-    console.log('2' + '2')
-
-  </script>
-  <script>
-    // Cambia el background de #nav-bar
-    function cambiarFondoNavBar() {
-      var navbar = document.getElementById('nav-bar');
-      if (navbar) {
-        navbar.style.background = '#3498db'; // color azul moderno
-      }
-    };
-  </script>
 </body>
-
 </html>
