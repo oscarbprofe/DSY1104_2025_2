@@ -26,7 +26,7 @@ function FormCreateUser({ onUserSubmit }) {
       pais: ''
     });
   };
-  console.log('formData',formData);
+ console.log('formData',formData);
   return (
     <div className="form-create-user">
       <h2>Crear Nuevo Usuario</h2>

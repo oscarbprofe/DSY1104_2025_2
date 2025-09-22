@@ -1,5 +1,6 @@
 
 function UserTable({ users }) {
+  
   return (
     <div className="user-table">
       <h2>Lista de Usuarios</h2>
