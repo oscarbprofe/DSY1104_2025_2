@@ -1,0 +1,55 @@
+.root-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.root-nav {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+.nav-link {
+  color: #666;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilos para NavLink activo y pendiente */
+.nav-link.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.nav-link.pending {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
