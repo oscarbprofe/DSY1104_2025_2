@@ -1,3 +1,4 @@
+
 // Simulamos una lista de productos
 const productos = [
   { id: 1, nombre: 'Producto 1', precio: 100 },
@@ -7,12 +8,13 @@ const productos = [
 
 export async function productsLoader() {
   // Simulamos una llamada a API
-  return await axios.get('/api/productos')
-      .then(response => {
-        resolve(response.data)
-      })
-      .catch(() => {
-        // Si hay un error, devolvemos los productos simulados
-        resolve(productos)
-      })
+  try {
+    const response = await fetch("https://dummyjson.com/products");
+    const data = await response.json();
+    console.log(data.products);
+    return data.products;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 }

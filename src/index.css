@@ -18,14 +18,15 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #ff0000;
 }
 
 body {
   margin: 0;
+  width: 100%;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
