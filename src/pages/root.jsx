@@ -36,6 +36,9 @@ export default function Root() {
           <Outlet />
         )}
       </main>
+      <footer>
+        Soy el footer
+      </footer>
     </div>
   )
 }

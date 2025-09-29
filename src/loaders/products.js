@@ -7,9 +7,12 @@ const productos = [
 
 export async function productsLoader() {
   // Simulamos una llamada a API
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ productos })
-    }, 1000)
-  })
+  return await axios.get('/api/productos')
+      .then(response => {
+        resolve(response.data)
+      })
+      .catch(() => {
+        // Si hay un error, devolvemos los productos simulados
+        resolve(productos)
+      })
 }
