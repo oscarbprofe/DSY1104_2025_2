@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 
 export default function NavBarRoot() {
     return (
@@ -12,8 +12,8 @@ export default function NavBarRoot() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink to="/">Home </NavLink>
-                        <NavLink to="/productos">Productos </NavLink>
+                        <Link to="/">Home</Link>
+                        <Link to="/productos">Productos</Link>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
