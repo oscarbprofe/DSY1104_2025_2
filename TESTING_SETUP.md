@@ -240,3 +240,176 @@ npm run test
 - [Documentación de Karma](https://karma-runner.github.io/)
 - [Documentación de Jasmine](https://jasmine.github.io/)
 - [Testing en React](https://reactjs.org/docs/testing.html)
+
+## Consideraciones Importantes y Solución de Problemas Avanzados
+
+### 1. Uso de className en lugar de class
+
+En React, es crucial usar `className` en lugar de `class` para los atributos de clase CSS. Este es un error común que puede causar problemas de renderizado:
+
+```jsx
+// Incorrecto
+<div class="mi-clase">...</div>
+
+// Correcto
+<div className="mi-clase">...</div>
+```
+
+### 2. Manejo de Asincronía en Tests
+
+Los tests de componentes React pueden requerir manejo asíncrono debido a la naturaleza del renderizado. Hay varias formas de manejar esto:
+
+```jsx
+// Opción 1: Usando setTimeout
+function renderComponent(message = "Test message") {
+    return new Promise(resolve => {
+        root.render(<Component message={message} />);
+        // Dar tiempo suficiente para que React actualice el DOM
+        setTimeout(resolve, 100);
+    });
+}
+
+// Opción 2: Usando done callback de Jasmine
+it('debería renderizar correctamente', (done) => {
+    renderComponent().then(() => {
+        // Realizar assertions
+        done();
+    });
+});
+```
+
+### 3. Manejo de Selectores DOM
+
+Es importante ser defensivo al trabajar con selectores DOM en los tests:
+
+```jsx
+it('debería tener elementos correctos', (done) => {
+    renderComponent().then(() => {
+        const container = document.querySelector('.mi-contenedor');
+        expect(container).toBeTruthy();
+
+        if (container) {
+            const elemento = container.querySelector('.mi-elemento');
+            expect(elemento).toBeTruthy();
+            // Más assertions...
+        }
+        done();
+    });
+});
+```
+
+### 4. Versiones Compatibles de React
+
+Asegúrate de que las versiones de `react` y `react-dom` sean exactamente las mismas para evitar problemas de compatibilidad:
+
+```bash
+# Verificar versiones actuales
+npm list react
+npm list react-dom
+
+# Si son diferentes, actualizar a la misma versión
+npm install react@X.X.X react-dom@X.X.X
+```
+
+### 5. Problemas con JSDOM y MessageChannel
+
+Si encuentras errores relacionados con MessageChannel en JSDOM, considera estas soluciones:
+
+1. Usar un enfoque más simple sin `act`:
+```jsx
+// En lugar de usar act
+import { act } from 'react-dom/test-utils';
+
+// Usar setTimeout y Promises
+function renderComponent() {
+    return new Promise(resolve => {
+        root.render(<Component />);
+        setTimeout(resolve, 100);
+    });
+}
+```
+
+2. Configurar un polyfill para MessageChannel si es necesario.
+
+### 6. Problemas de Resolución de Módulos
+
+Si webpack no puede resolver los módulos correctamente, asegúrate de que la configuración de resolve incluya los directorios correctos:
+
+```javascript
+// En karma.conf.cjs
+webpack: {
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        modules: ['node_modules', 'src'],
+        fallback: {
+            path: false,
+            fs: false
+        }
+    }
+}
+```
+
+### 7. Manejo de Atributos href en Tests
+
+Cuando pruebes enlaces, es mejor usar getAttribute('href') en lugar de la propiedad href directamente:
+
+```jsx
+it('debería tener los enlaces correctos', (done) => {
+    renderComponent().then(() => {
+        const links = container.querySelectorAll('a');
+        expect(links[0].getAttribute('href')).toBe('./ruta.html');
+        done();
+    });
+});
+```
+
+### 8. Limpieza Adecuada
+
+Es crucial realizar una limpieza adecuada después de cada test para evitar efectos secundarios:
+
+```jsx
+afterEach(() => {
+    if (root) {
+        root.unmount();
+    }
+    if (container) {
+        container.remove();
+    }
+    container = null;
+    root = null;
+});
+```
+
+### 9. Debugging de Tests
+
+Para depurar tests fallidos, puedes usar:
+
+```javascript
+// En karma.conf.cjs
+logLevel: config.LOG_DEBUG,
+browsers: ['jsdom'],
+browserConsoleLogOptions: {
+    level: 'debug',
+    format: '%b %T: %m',
+    terminal: true
+}
+```
+
+### 10. Optimización de Performance
+
+Para mejorar el rendimiento de los tests:
+
+1. Usar patrones específicos en los archivos de test:
+```javascript
+files: [
+    { pattern: 'src/**/*.test.jsx', watched: false },
+    { pattern: 'src/**/*.test.js', watched: false }
+]
+```
+
+2. Configurar el nivel de concurrencia apropiadamente:
+```javascript
+concurrency: 1  // Para tests que requieren un entorno más controlado
+```
+
+Estas consideraciones ayudarán a evitar problemas comunes y a mantener un conjunto de tests más robusto y mantenible.
