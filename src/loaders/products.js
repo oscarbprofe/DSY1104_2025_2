@@ -9,7 +9,7 @@ const productos = [
 export async function productsLoader() {
   // Simulamos una llamada a API
   try {
-    const response = await fetch("https://dummyjson.com/products");
+    const response = await fetch("https://dummyjson.com/products"); // el await es necesario para esperar la respuesta
     const data = await response.json();
     console.log(data.products);
     return data.products;

@@ -4,6 +4,7 @@ import Home from './pages/home/index'
 import Products from './pages/products/index'
 import { productsLoader } from './loaders/products'
 import { homeLoader } from './loaders/home'
+import NewProduct from './pages/products/NewProduct'
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             index: true,  // Esta será "/productos"
             Component: Products,
             loader: productsLoader,
+          },
+          {
+            path:"nuevo",
+            Component: NewProduct,
           },
           {
             path: ":id",  // Esta será "/productos/:id"

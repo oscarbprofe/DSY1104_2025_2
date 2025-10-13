@@ -2,7 +2,6 @@
 export default function Hero({ message }) {
 
     return (
-
         <section className="hero">
             <div className="container hero-grid">
                 <div className="hero-copy">
