@@ -1,4 +1,6 @@
 
+import { Link } from "react-router";
+
 export default function Hero({ message }) {
 
     return (
@@ -8,8 +10,8 @@ export default function Hero({ message }) {
                     <h1>Tu Destino Gaming Definitivo</h1>
                     <p className="lead">{message}</p>
                     <div className="cta-buttons">
-                        <a className="btn-primary" href="./productos.html">Explorar Productos</a>
-                        <a className="btn-secondary" href="./productos.html?cat=OF">Ver Ofertas</a>
+                        <Link className="btn-primary" to="/productos">Explorar Productos</Link>
+                        <Link className="btn-secondary" to="/productos?category=OF">Ver Ofertas</Link>
                     </div>
                 </div>
                 <div className="hero-visual">
