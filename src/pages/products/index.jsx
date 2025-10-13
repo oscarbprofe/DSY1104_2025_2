@@ -1,46 +1,34 @@
-import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router"
 import "./products.css"
 
 export default function Products() {
-  const [productos, setProductos] = useState([]);
+  const productos = useLoaderData() ?? []
 
-  useEffect(() => {
-    const productosFromServer = useLoaderData()
-    setProductos(productosFromServer)
-  }, [])   // Este useEffect se ejecuta solo una vez al montar el componente
-
-  useEffect(() => {
-    const productosFromServer = useLoaderData()
-    setProductos(productosFromServer)
-  })   // Este useEffect se ejecuta en cada renderizado
-
-  useEffect(() => {
-    const productosFromServer = useLoaderData()
-    setProductos(productosFromServer)
-  }, [productos])   // Este useEffect se ejecuta cada vez que cambia productos
-
-  useEffect(() => {
-  // Código al montar
-
-  return () => {
-    // Código al desmontar (cleanup)
-    console.log("Componente desmontado");
-  };
-}, []);
-
-  console.log(productos);
   return (
     <div>
       <h1>Productos</h1>
-      <div className="products-grid">
-        {productos.map(producto => (
-          <div key={producto.id} className="product-card">
-            <h3>{producto.title}</h3>
-            <p className="product-price">Precio: ${producto.price}</p>
-          </div>
-        ))}
-      </div>
+      {productos.length === 0 ? (
+        <div className="loading-container">No hay productos para mostrar</div>
+      ) : (
+        <div className="products-grid">
+          {productos.map((producto) => (
+            <div key={producto.id ?? producto.title} className="product-card">
+              {producto.image && (
+                <img
+                  src={producto.image}
+                  alt={producto.title}
+                  style={{ width: "100%", height: 160, objectFit: "cover", borderRadius: 8, marginBottom: 12 }}
+                />
+              )}
+              <h3>{producto.title}</h3>
+              {typeof producto.price !== "undefined" && (
+                <p className="product-price">Precio: ${producto.price}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
+

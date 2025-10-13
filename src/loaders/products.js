@@ -1,6 +1,6 @@
 
 // Loader que usa el servicio local de productos
-import { getProducts } from '../services/products/index.js';
+import { getProducts } from '../services/product/index.js';
 
 export async function productsLoader({ request } = {}) {
   try {
